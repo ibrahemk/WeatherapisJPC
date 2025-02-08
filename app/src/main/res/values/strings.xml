@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Weather_api</string>
+    <string name="title_activity_main_temp">MainTemp</string>
+</resources>
