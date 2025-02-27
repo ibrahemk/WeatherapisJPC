@@ -8,5 +8,5 @@ import retrofit2.Response
 
 
 interface ApiHelper {
-   suspend  fun Get(url:String): Flow<Resource<SingleWeather>>
+   suspend  fun<T> Get(url:String): Flow<Resource<T>>
 }

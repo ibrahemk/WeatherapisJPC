@@ -46,6 +46,7 @@ import com.example.weather_api.R
 import com.example.weather_api.Utils.Global
 import com.example.weather_api.ViewModel.Home_model
 import com.example.weather_api.modules.home_module
+import com.example.weather_api.ui.theme.Purple40
 
 
 import org.koin.androidx.compose.koinViewModel
@@ -88,6 +89,7 @@ homemodel.IsLocationPermissionGranted(LocalContext.current)
                                 Text(text = "Temp:${homemodel.state.temp!!.main.temp.toInt()}℃\nFeels like:${homemodel.state.temp!!.main.feelsLike.toInt()}℃", fontSize = 24.sp,
                                     modifier = Modifier
                                         .padding(padding)
+                                    ,color = Purple40
                                        )
 
                                 AsyncImage(

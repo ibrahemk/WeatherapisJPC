@@ -13,5 +13,5 @@ import retrofit2.http.Url
 interface ApiService {
 
     @GET
-    suspend fun Get(@Url url:String):Response<SingleWeather>
+    suspend fun<T> Get(@Url url:String):Response<T>
 }

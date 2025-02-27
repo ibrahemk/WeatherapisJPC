@@ -21,6 +21,7 @@ import com.example.weather_api.Retrofit.ApiHelperImpl
 import com.example.weather_api.States.HomeState
 import com.example.weather_api.Utils.Global
 import com.example.weather_api.model.Resource
+import com.example.weather_api.model.SingleWeather
 import com.example.weather_api.reducer.HomeReducer
 import com.google.android.gms.location.CurrentLocationRequest
 import com.google.android.gms.location.LocationRequest
@@ -87,27 +88,28 @@ init {
         )
     }
      fun getlastKnownLocation(context: Context){
-        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
-          if (ActivityCompat.checkSelfPermission(
-                 context,
-                 Manifest.permission.ACCESS_FINE_LOCATION
-             ) == PackageManager.PERMISSION_GRANTED) {
-//   fusedLocationClient.lastLocation.addOnSuccessListener { getdata(lat = it.latitude, lng = it.longitude) }.addOnFailureListener {getdata(0.0,0.0)}
-//              val currentBuilder =
-              fusedLocationClient.getCurrentLocation(CurrentLocationRequest.Builder().setDurationMillis(30000).build(),null)
-                  .addOnSuccessListener { getdata(lat = it.latitude, lng = it.longitude) }.addOnFailureListener {getdata(0.0,0.0)}
-//              fusedLocationClient.requestLocationUpdates(LocationRequest.Builder(60000L)
-//                  .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
-//                  .build())
-
-         }
+//        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+//          if (ActivityCompat.checkSelfPermission(
+//                 context,
+//                 Manifest.permission.ACCESS_FINE_LOCATION
+//             ) == PackageManager.PERMISSION_GRANTED) {
+////   fusedLocationClient.lastLocation.addOnSuccessListener { getdata(lat = it.latitude, lng = it.longitude) }.addOnFailureListener {getdata(0.0,0.0)}
+////              val currentBuilder =
+//              fusedLocationClient.getCurrentLocation(CurrentLocationRequest.Builder().setDurationMillis(30000).build(),null)
+//                  .addOnSuccessListener { getdata(lat = it.latitude, lng = it.longitude) }.addOnFailureListener {getdata(0.0,0.0)}
+////              fusedLocationClient.requestLocationUpdates(LocationRequest.Builder(60000L)
+////                  .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
+////                  .build())
+//
+//         }
+         getdata(0.0,0.0)
 
     }
     fun getdata(lat:Double,lng: Double)=viewModelScope.launch {
         handle_loading(true)
 
 //        31.238834,29.994946
-            apiHelper.Get("${Global.Get_Single_weather}?lat=${lat}&lon=${lng}&units=metric&appid=${Global.ApiKey}").flowOn(Dispatchers.IO)
+            apiHelper.Get<SingleWeather>("${Global.Get_Single_weather}?lat=${lat}&lon=${lng}&units=metric&appid=${Global.ApiKey}").flowOn(Dispatchers.IO)
                 .catch { e->
                 }
                 .collect{

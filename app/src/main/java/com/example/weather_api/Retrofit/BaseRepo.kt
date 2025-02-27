@@ -51,6 +51,7 @@ abstract class BaseRepo() {
             } catch (e: Exception) {
                 // Returning 'Something went wrong' in case
                 // of unknown error wrapped in Resource.Error
+                if (e!=null){}
                 Resource.Error(errorMessage = "Something went wrong")
             }
         }
